@@ -3,7 +3,7 @@ import { useState } from 'react'
 import AddToggleButton from './AddToggleButton'
 import FormBody from './FormBody'
 
-const FormGroup = ({ onCreateTask }) => {
+const FormGroup = ({ onCreateTask, onOpenForm }) => {
     const [formVisible, setFormVisible] = useState(false)
 
     return (
