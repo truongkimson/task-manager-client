@@ -1,63 +1,71 @@
-import React from 'react'
-import { useState } from 'react'
+import React from "react";
+import { useState } from "react";
 
 const FormBody = ({ onAction, action, defaultTask, onComplete }) => {
-    const [description, setDescription] = useState(defaultTask.description)
-    const [date, setDate] = useState(defaultTask.date)
+    const [description, setDescription] = useState(defaultTask.description);
+    const [date, setDate] = useState(defaultTask.date);
 
     const onSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         // check if description empty
         if (!description) {
-            alert('Please enter a description')
-            return
+            alert("Please enter a description");
+            return;
         }
 
         // check if date empty
         if (!date) {
-            alert('Date cannot be empty')
-            return
+            alert("Date cannot be empty");
+            return;
         }
 
         // check if date is in the past
         if (Date.parse(date) < new Date().setHours(0, 0, 0, 0)) {
-            alert('Please select a date in the future')
-            return
+            alert("Please select a date in the future");
+            return;
         }
 
-        onAction({ id: defaultTask.id, description, date })
+        onAction({ id: defaultTask.id, description, date });
 
-        setDescription('')
-        setDate('')
+        setDescription("");
+        setDate("");
 
-        onComplete()
-    }
+        onComplete();
+    };
 
     return (
         <>
             <form className="card-body" onSubmit={onSubmit}>
                 <div className="mb-3">
                     <label htmlFor="desc">Description</label>
-                    <input type="text"
+                    <input
+                        data-testid="form-desc"
+                        type="text"
                         className="form-control"
                         id="desc"
                         placeholder="Enter Task description"
                         value={description}
-                        onChange={e => setDescription(e.target.value)} />
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="date">Date</label>
-                    <input type="date"
+                    <input
+                        data-testid="form-date"
+                        type="date"
                         className="form-control"
                         id="date"
                         value={date}
-                        onChange={e => setDate(e.target.value)} />
+                        onChange={(e) => setDate(e.target.value)}
+                    />
                 </div>
-                <button type="submit" className="btn btn-primary">{action}</button>
+                <button data-testid="form-btn" type="submit" className="btn btn-primary">
+                    {action}
+                </button>
             </form>
         </>
-    )
-}
+    );
+};
 
-export default FormBody
+export default FormBody;

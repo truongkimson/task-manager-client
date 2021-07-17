@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const Button = ({ text, onClick }) => {
     return (
-        <button className="btn btn-primary" onClick={onClick}>{text}</button>
+        <button data-testid="btn" className="btn btn-primary" onClick={onClick}>{text}</button>
     )
 }
 

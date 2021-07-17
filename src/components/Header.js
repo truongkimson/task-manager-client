@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const Header = ({ title }) => {
     return (
-        <header className="text-center">
+        <header data-testid="header" className="text-center">
             <h1>{title}</h1>
         </header>
     )

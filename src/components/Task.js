@@ -13,7 +13,9 @@ const Task = ({ task, onDeleteTask, onUpdateTask, onActiveFormChange }) => {
             {activeForm === task.id ? (
                 <>
                     <div>
-                        <div className="mt-3 ms-3 float-start"><h5>Edit task</h5></div>
+                        <div className="mt-3 ms-3 float-start">
+                            <h5>Edit task</h5>
+                        </div>
                         <FaTimes
                             className="mt-3 me-3 float-end"
                             size={20}
@@ -31,15 +33,16 @@ const Task = ({ task, onDeleteTask, onUpdateTask, onActiveFormChange }) => {
                 </>
             ) : (
                 <div className="card-body">
-                    <div className="row">
+                    <div data-testid="task-item" className="row">
                         <div className="col-10">
                             <h5
+                                data-testid="task-desc"
                                 onClick={() => onActiveFormChange(task.id)}
                                 style={{ cursor: "pointer" }}
                             >
                                 {task.description}
                             </h5>
-                            <div>
+                            <div data-testid="task-date">
                                 <FaRegCalendar className="me-1 align-baseline" />
                                 {task.date}
                             </div>
