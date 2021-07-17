@@ -9,11 +9,11 @@ import {
     updateTask,
 } from "./api/TaskAPI";
 
-export const ActiveFormContext = React.createContext()
+export const ActiveFormContext = React.createContext();
 
 function App() {
     const [tasks, setTasks] = useState([]);
-    const [activeForm, setActiveForm] = useState('none');
+    const [activeForm, setActiveForm] = useState(-1);
 
     useEffect(() => {
         const getAndSetTasks = async () => {
@@ -73,23 +73,28 @@ function App() {
     };
 
     return (
-      <ActiveFormContext.Provider value={activeForm}>
-        <div className="container col-6">
-            <Header title="Task Manager" />
-            <FormGroup onCreateTask={onCreateTask} onOpenForm={setActiveForm}/>
-            <Header title="Task List" />
-            {tasks.length > 0 ? (
-                <TaskList
-                    tasks={tasks}
-                    onDeleteTask={onDeleteTask}
-                    onUpdateTask={onUpdateTask}
-                    onOpenForm={setActiveForm}
+        <ActiveFormContext.Provider value={activeForm}>
+            <div className="container col-6">
+                <Header title="Task Manager" />
+                <FormGroup
+                    onCreateTask={onCreateTask}
+                    onActiveFormChange={setActiveForm}
                 />
-            ) : (
-                <p className="alert text-center">There is no tasks no show</p>
-            )}
-        </div>
-      </ActiveFormContext.Provider>
+                <Header title="Task List" />
+                {tasks.length > 0 ? (
+                    <TaskList
+                        tasks={tasks}
+                        onDeleteTask={onDeleteTask}
+                        onUpdateTask={onUpdateTask}
+                        onActiveFormChange={setActiveForm}
+                    />
+                ) : (
+                    <p className="alert text-center">
+                        There is no tasks no show
+                    </p>
+                )}
+            </div>
+        </ActiveFormContext.Provider>
     );
 }
 

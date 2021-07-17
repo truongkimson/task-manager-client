@@ -3,14 +3,14 @@ import { useContext } from "react";
 import Button from "./Button";
 import FormBody from "./FormBody";
 import { FaRegCalendar, FaTimes } from "react-icons/fa";
-import { CurrentUpdateContext } from "./TaskList";
+import { ActiveFormContext } from "../App";
 
-const Task = ({ task, onDeleteTask, onUpdateTask, onUpdateChange }) => {
-    const currentUpdate = useContext(CurrentUpdateContext);
+const Task = ({ task, onDeleteTask, onUpdateTask, onActiveFormChange }) => {
+    const activeForm = useContext(ActiveFormContext);
 
     return (
         <div className="card my-1">
-            {currentUpdate === task.id ? (
+            {activeForm === task.id ? (
                 <>
                     <div>
                         <div className="mt-3 ms-3 float-start"><h5>Edit task</h5></div>
@@ -18,7 +18,7 @@ const Task = ({ task, onDeleteTask, onUpdateTask, onUpdateChange }) => {
                             className="mt-3 me-3 float-end"
                             size={20}
                             style={{ cursor: "pointer" }}
-                            onClick={() => onUpdateChange(-1)}
+                            onClick={() => onActiveFormChange(-1)}
                         />
                     </div>
 
@@ -26,7 +26,7 @@ const Task = ({ task, onDeleteTask, onUpdateTask, onUpdateChange }) => {
                         onAction={onUpdateTask}
                         action="Update"
                         defaultTask={task}
-                        onComplete={() => onUpdateChange(-1)}
+                        onComplete={() => onActiveFormChange(-1)}
                     />
                 </>
             ) : (
@@ -34,7 +34,7 @@ const Task = ({ task, onDeleteTask, onUpdateTask, onUpdateChange }) => {
                     <div className="row">
                         <div className="col-10">
                             <h5
-                                onClick={() => onUpdateChange(task.id)}
+                                onClick={() => onActiveFormChange(task.id)}
                                 style={{ cursor: "pointer" }}
                             >
                                 {task.description}

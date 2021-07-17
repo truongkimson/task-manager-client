@@ -1,23 +1,30 @@
-import React from 'react'
-import { useState } from 'react'
-import AddToggleButton from './AddToggleButton'
-import FormBody from './FormBody'
+import React from "react";
+import { useContext } from "react";
+import { ActiveFormContext } from "../App";
+import AddToggleButton from "./AddToggleButton";
+import FormBody from "./FormBody";
 
-const FormGroup = ({ onCreateTask, onOpenForm }) => {
-    const [formVisible, setFormVisible] = useState(false)
+const FormGroup = ({ onCreateTask, onActiveFormChange }) => {
+    const activeForm = useContext(ActiveFormContext);
 
     return (
         <div className="container">
-            <AddToggleButton visible={formVisible} onClick={visible => setFormVisible(visible)} />
-            {formVisible &&
+            <AddToggleButton
+                visible={activeForm === 0}
+                onClick={onActiveFormChange}
+            />
+            {activeForm === 0 && (
                 <div className="card">
-                    <FormBody onAction={onCreateTask} action="Create"
-                        defaultTask={{ id: 0, description: '', date: '' }}
-                        onComplete={() => setFormVisible(false)} />
+                    <FormBody
+                        onAction={onCreateTask}
+                        action="Create"
+                        defaultTask={{ id: 0, description: "", date: "" }}
+                        onComplete={() => onActiveFormChange(-1)}
+                    />
                 </div>
-            }
+            )}
         </div>
-    )
-}
+    );
+};
 
-export default FormGroup
+export default FormGroup;
