@@ -1,7 +1,12 @@
 import React from "react";
 import Task from "./Task";
 
-const TaskList = ({ tasks, onDeleteTask, onUpdateTask, onActiveFormChange }) => {
+const TaskList = ({
+    tasks,
+    onDeleteTask,
+    onUpdateTask,
+    onActiveFormChange,
+}) => {
     return (
         <div className="container">
             {tasks.map((task) => (

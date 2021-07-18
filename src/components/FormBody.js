@@ -36,7 +36,7 @@ const FormBody = ({ onAction, action, defaultTask, onComplete }) => {
 
     return (
         <>
-            <form className="card-body" onSubmit={onSubmit}>
+            <form data-testid={`form-${action}`} className="card-body" onSubmit={onSubmit}>
                 <div className="mb-3">
                     <label htmlFor="desc">Description</label>
                     <input
@@ -60,7 +60,11 @@ const FormBody = ({ onAction, action, defaultTask, onComplete }) => {
                         onChange={(e) => setDate(e.target.value)}
                     />
                 </div>
-                <button data-testid="form-btn" type="submit" className="btn btn-primary">
+                <button
+                    data-testid="form-btn"
+                    type="submit"
+                    className="btn btn-primary"
+                >
                     {action}
                 </button>
             </form>

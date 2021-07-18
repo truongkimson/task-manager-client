@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import PropTypes from "prop-types";
 
 const AddToggleButton = ({ visible, onClick }) => {
     return (
@@ -15,6 +16,11 @@ const AddToggleButton = ({ visible, onClick }) => {
             )}
         </>
     );
+};
+
+AddToggleButton.propTypes = {
+    visible: PropTypes.bool,
+    onClick: PropTypes.func,
 };
 
 export default AddToggleButton;
