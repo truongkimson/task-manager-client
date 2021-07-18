@@ -1,4 +1,4 @@
-const HOST = 'http://localhost:8080'
+const HOST = 'http://140.238.194.85:8080'
 
 const fetchAllTasksAsync = async () => {
     return fetch(`${HOST}/api/v1/task/all`)
